@@ -16,7 +16,7 @@ export const addMessage = functions.https.onRequest(async (req, res) => {
 });
 
 export const makeUppercase = functions.firestore
-    .document("/messages/{documentId}")
+    .document("/message/{documentId}")
     .onCreate((snap, context) => {
       const original = snap.data().original;
       functions.logger.log("Uppercasing", context.params.documentId, original);
