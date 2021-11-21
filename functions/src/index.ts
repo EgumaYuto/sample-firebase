@@ -1,7 +1,12 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import * as message from "./http/message";
 
 admin.initializeApp();
+
+export {
+  message,
+};
 
 export const helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
