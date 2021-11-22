@@ -8,3 +8,9 @@ export const makeUppercase = functions.firestore
       const uppercase = original.toUpperCase();
       return snap.ref.set({uppercase}, {merge: true});
     });
+
+export const failureTrigger = functions.firestore
+    .document("/message/{documentId}")
+    .onCreate((snap, context) => {
+      throw Error("必ず失敗するテストトリガーです");
+    });
