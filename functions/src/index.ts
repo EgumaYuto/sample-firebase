@@ -13,13 +13,6 @@ export const helloWorld = functions.https.onRequest((request, response) => {
   response.json({message: "Hello from Firebase!"});
 });
 
-export const addMessage = functions.https.onRequest(async (req, res) => {
-  const original = req.query.text;
-  const writeResult = await admin.firestore()
-      .collection("message").add({original: original});
-  res.json({result: `Message with ID; ${writeResult.id} added.`});
-});
-
 export const makeUppercase = functions.firestore
     .document("/message/{documentId}")
     .onCreate((snap, context) => {
