@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
+import * as datadog from "connect-datadog"
 
 const router = express.Router();
 router.get("/", (_req, res) => {
@@ -15,6 +16,10 @@ router.get("/failure", () => {
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(datadog({
+    "response_code":true,
+    "tags": ["app:my_app"]
+}))
 app.use("/", router);
 
 export const sample = functions.https.onRequest(app);
