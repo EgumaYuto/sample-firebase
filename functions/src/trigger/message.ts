@@ -11,6 +11,6 @@ export const makeUppercase = functions.firestore
 
 export const failureTrigger = functions.firestore
     .document("/message/{documentId}")
-    .onCreate((snap, context) => {
+    .onCreate(() => {
       throw Error("必ず失敗するテストトリガーです");
     });
