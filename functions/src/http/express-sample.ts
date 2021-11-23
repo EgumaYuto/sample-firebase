@@ -8,6 +8,9 @@ router.get("/", (_req, res) => {
 router.get("/path1", (_req, res) => {
   res.json({path: "/path1"});
 });
+router.get("/failure", () => {
+  throw Error("必ず失敗するエンドポイントです");
+});
 
 const app = express();
 app.use(express.json());
