@@ -6,7 +6,7 @@ import { useState } from "react";
 import { initializeApp, getApps } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-const Login: NextPage = () => {
+const Signin: NextPage = () => {
     
    const apps = getApps()
    if (apps.length === 0) {
@@ -95,4 +95,4 @@ const Login: NextPage = () => {
     )
 }
 
-export default Login
+export default Signin
