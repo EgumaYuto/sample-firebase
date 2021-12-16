@@ -1,8 +1,11 @@
 import type { NextPage } from 'next'
+import styles from '../styles/Home.module.css'
 
 const Login: NextPage = () => {
     return (
-        <div>Login</div>
+        <div className={styles.container}>
+            Login
+        </div>
     )
 }
 
