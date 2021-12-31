@@ -8,23 +8,23 @@ const logger = MyLogger.create("express-sample");
 
 const router = express.Router();
 router.get("/", (_req, res) => {
-  logger.debug("GET /");
-  logger.info("GET /");
-  logger.warning("GET /");
-  logger.error("GET /", new Error("sample error"));
-  logger.critical("GET /", new Error("sample critical"));
   res.json({path: "/"});
 });
 router.get("/path1", (_req, res) => {
-  logger.info("GET /path1")
   res.json({path: "/path1"});
 });
 router.post("/message", async (req, res) => {
-  logger.info("POST /message")
   const message = req.body.message
   const writeResult = await admin.firestore()
       .collection("message").add({original: message});
   res.json(writeResult)
+})
+router.get("/logger", (_req, _res) => {
+  logger.debug("GET /logger");
+  logger.info("GET /logger");
+  logger.warning("GET /logger");
+  logger.error("GET /logger", new Error("sample error"));
+  logger.critical("GET /logger", new Error("sample critical"));
 })
 
 const app = express();
