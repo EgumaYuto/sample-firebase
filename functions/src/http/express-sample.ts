@@ -2,8 +2,9 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as express from "express";
 import { MyLogger } from "../util/MyLogger";
+import "source-map-support/register";
 
-const logger = MyLogger.create("express-sample")
+const logger = MyLogger.create("express-sample");
 
 const router = express.Router();
 router.get("/", (_req, res) => {
