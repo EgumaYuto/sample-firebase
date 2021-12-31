@@ -4,49 +4,53 @@ export class MyLogger {
   private logger: Logger;
   private constructor(fileName: string) {
     addLayout("json", (config) => (logEvent) => {
-      return JSON.stringify({
-        fileName: fileName,
-        severity: logEvent.level.levelStr,
-        message: this.formatMessage(logEvent.data),
-        timestamp: logEvent.startTime
-      }) + config.separator
-    })
+      return (
+        JSON.stringify({
+          fileName: fileName,
+          severity: logEvent.level.levelStr,
+          message: this.formatMessage(logEvent.data),
+          timestamp: logEvent.startTime,
+        }) + config.separator
+      );
+    });
     configure({
       appenders: {
         out: {
-          type: "stdout", layout: {type : "json", separator: ""}
-        }
+          type: "stdout",
+          layout: { type: "json", separator: "" },
+        },
       },
       categories: {
-        default: { 
-          appenders: ["out"], level: "all"
-        }
-      }
-    })
+        default: {
+          appenders: ["out"],
+          level: "all",
+        },
+      },
+    });
     this.logger = getLogger();
   }
 
   /**
    * TODO どんなログを出すことが多いのか次第で出し分ける
-   * @param data 
-   * @returns 
+   * @param data
+   * @returns
    */
-  private formatMessage(data: any[]) : string | undefined{
+  private formatMessage(data: any[]): string | undefined {
     if (!data || data.length === 0) {
-      return undefined
+      return undefined;
     }
-    let message = ""
-    const separator = ", "
+    let message = "";
+    const separator = ", ";
     for (let index = 0; index < data.length; index++) {
       if (data[index] instanceof Error) {
-        const d = data[index]
-        message += d.stack
+        const d = data[index];
+        message += d.stack;
       } else {
-        message += data[index]
+        message += data[index];
       }
-      message += separator
+      message += separator;
     }
-    return message.substring(0, message.length - separator.length)
+    return message.substring(0, message.length - separator.length);
   }
 
   public static create = (fileName: string) => new MyLogger(fileName);

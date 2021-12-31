@@ -6,13 +6,9 @@ import * as triggerMessage from "./trigger/message";
 
 admin.initializeApp();
 
-export {
-  httpMessage,
-  httpExpressSample,
-  triggerMessage,
-};
+export { httpMessage, httpExpressSample, triggerMessage };
 
 export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.json({message: "Hello from Firebase!"});
+  functions.logger.info("Hello logs!", { structuredData: true });
+  response.json({ message: "Hello from Firebase!" });
 });
