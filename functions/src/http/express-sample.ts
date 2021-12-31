@@ -10,8 +10,8 @@ router.get("/", (_req, res) => {
   logger.debug("GET /");
   logger.info("GET /");
   logger.warning("GET /");
-  logger.error("GET /");
-  logger.critical("GET /");
+  logger.error("GET /", new Error("sample error"));
+  logger.critical("GET /", new Error("sample critical"));
   res.json({path: "/"});
 });
 router.get("/path1", (_req, res) => {
