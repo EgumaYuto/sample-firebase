@@ -7,7 +7,11 @@ const logger = MyLogger.create("express-sample")
 
 const router = express.Router();
 router.get("/", (_req, res) => {
-  logger.info("GET /")
+  logger.debug("GET /");
+  logger.info("GET /");
+  logger.warning("GET /");
+  logger.error("GET /");
+  logger.critical("GET /");
   res.json({path: "/"});
 });
 router.get("/path1", (_req, res) => {

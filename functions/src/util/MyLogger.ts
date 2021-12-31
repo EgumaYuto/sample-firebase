@@ -3,7 +3,7 @@ import { Logger, getLogger, configure, addLayout } from "log4js";
 export class MyLogger {
   private logger: Logger;
   private constructor(fileName: string) {
-    addLayout('json', (config) => (logEvent) => {
+    addLayout("json", (config) => (logEvent) => {
       return JSON.stringify({
         fileName: fileName,
         severity: logEvent.level.levelStr,
@@ -14,12 +14,12 @@ export class MyLogger {
     configure({
       appenders: {
         out: {
-          type: 'stdout', layout: {type : 'json', separator: ''}
+          type: "stdout", layout: {type : "json", separator: ""}
         }
       },
       categories: {
         default: { 
-          appenders: ['out'], level: 'all'
+          appenders: ["out"], level: "all"
         }
       }
     })
@@ -35,8 +35,8 @@ export class MyLogger {
     if (!data || data.length === 0) {
       return undefined
     }
-    let message = ''
-    const separator = ', '
+    let message = ""
+    const separator = ", "
     for (let index = 0; index < data.length; index++) {
       if (data[index] instanceof Error) {
         const d = data[index]
