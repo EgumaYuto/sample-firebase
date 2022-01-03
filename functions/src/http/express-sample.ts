@@ -21,12 +21,13 @@ router.post("/message", async (req, res) => {
     .add({ original: message });
   res.json(writeResult);
 });
-router.get("/logger", (_req, _res) => {
+router.get("/logger", (_req, res) => {
   logger.debug("GET /logger");
   logger.info("GET /logger");
   logger.warning("GET /logger");
   logger.error("GET /logger", new Error("sample error"));
   logger.critical("GET /logger", new Error("sample critical"));
+  res.json({ path: "/logger" });
 });
 
 const app = express();
