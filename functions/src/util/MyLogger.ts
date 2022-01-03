@@ -75,7 +75,7 @@ export class MyLogger {
     return message.substring(0, message.length - separator.length);
   }
 
-  public static create = (fileName: string) => new MyLogger(fileName);
+  public static create = (fileName: string): MyLogger => new MyLogger(fileName);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public debug = (message: string, ...args: any[]): void => {
